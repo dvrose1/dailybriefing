@@ -94,8 +94,8 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-lg mx-4 h-[600px] max-h-[80vh] flex flex-col">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-fade-in">
+      <div className="bg-white rounded-xl shadow-xl w-full max-w-lg mx-4 h-[600px] max-h-[80vh] flex flex-col animate-scale-in">
         <div className="flex items-center justify-between p-4 border-b border-slate-200">
           <div className="flex items-center gap-2">
             <MessageSquare className="text-blue-600" size={20} />

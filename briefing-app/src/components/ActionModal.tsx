@@ -40,8 +40,8 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
 
   if (isSuccess) {
     return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-xl shadow-xl p-8 max-w-md w-full mx-4 text-center">
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-fade-in">
+        <div className="bg-white rounded-xl shadow-xl p-8 max-w-md w-full mx-4 text-center animate-scale-in">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <Check className="text-green-600" size={32} />
           </div>
@@ -56,8 +56,8 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl shadow-xl max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-fade-in">
+      <div className="bg-white rounded-xl shadow-xl max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto animate-scale-in">
         <div className="flex items-center justify-between p-4 border-b border-slate-200">
           <div className="flex items-center gap-3">
             {getIcon()}
