@@ -10,6 +10,8 @@ import InsightCardExpanded from '@/components/InsightCardExpanded';
 import FeedbackButtons from '@/components/FeedbackButtons';
 import ActionModal from '@/components/ActionModal';
 import UndoToast from '@/components/UndoToast';
+import BriefMeChat from '@/components/BriefMeChat';
+import VoicePlayer from '@/components/VoicePlayer';
 import { insights as initialInsights } from '@/data/insights';
 import { Insight, RecommendedAction } from '@/types';
 
@@ -18,14 +20,15 @@ export default function Home() {
   const [visibleInsights, setVisibleInsights] = useState<Insight[]>(initialInsights);
   const [dismissedInsight, setDismissedInsight] = useState<Insight | null>(null);
   const [activeAction, setActiveAction] = useState<RecommendedAction | null>(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isVoiceOpen, setIsVoiceOpen] = useState(false);
 
   const handleToggle = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
   };
 
   const handleVoiceClick = () => {
-    // TODO: Implement voice playback
-    console.log('Voice briefing clicked');
+    setIsVoiceOpen(true);
   };
 
   const handleDismiss = useCallback((insight: Insight) => {
@@ -95,6 +98,29 @@ export default function Home() {
           onClose={() => setDismissedInsight(null)}
         />
       )}
+
+      <BriefMeChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+      <VoicePlayer isOpen={isVoiceOpen} onClose={() => setIsVoiceOpen(false)} />
+
+      <button
+        onClick={() => setIsChatOpen(true)}
+        className="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
+        title="Brief Me"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+      </button>
     </div>
   );
 }
