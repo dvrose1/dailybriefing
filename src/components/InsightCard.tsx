@@ -53,32 +53,32 @@ export default function InsightCard({
     >
       <button
         onClick={onToggle}
-        className="w-full p-4 text-left flex items-start gap-4"
+        className="w-full p-3 sm:p-4 text-left flex items-start gap-3 sm:gap-4"
       >
-        <div className="flex flex-col gap-2 shrink-0">
+        <div className="flex flex-col gap-1 sm:gap-2 shrink-0">
           <span
-            className={`text-xs font-semibold px-2 py-0.5 rounded ${priority.badge}`}
+            className={`text-xs font-semibold px-1.5 sm:px-2 py-0.5 rounded ${priority.badge}`}
           >
             {priority.label}
           </span>
-          <span className="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600">
+          <span className="text-xs font-medium px-1.5 sm:px-2 py-0.5 rounded bg-slate-100 text-slate-600 hidden sm:block">
             {categoryLabels[insight.category]}
           </span>
         </div>
 
         <div className="flex-1 min-w-0">
-          <h3 className="text-base font-semibold text-slate-800">
+          <h3 className="text-sm sm:text-base font-semibold text-slate-800">
             {insight.headline}
           </h3>
           {!isExpanded && (
-            <p className="text-sm text-slate-500 mt-1 line-clamp-2">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1 line-clamp-2">
               {insight.summary}
             </p>
           )}
         </div>
 
-        <div className="flex flex-col items-end gap-2 shrink-0">
-          <span className="text-xs text-slate-400">{insight.updatedAt}</span>
+        <div className="flex flex-col items-end gap-1 sm:gap-2 shrink-0">
+          <span className="text-xs text-slate-400 hidden sm:block">{insight.updatedAt}</span>
           {isExpanded ? (
             <ChevronUp size={20} className="text-slate-400" />
           ) : (

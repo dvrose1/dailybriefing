@@ -22,9 +22,9 @@ export default function BriefingHeader({ itemCount, onVoiceClick }: BriefingHead
 
   return (
     <header className="mb-6">
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-800">
+          <h1 className="text-xl sm:text-2xl font-semibold text-slate-800">
             {greeting}, Sarah
           </h1>
           <p className="text-sm text-slate-500 mt-1">{dateString}</p>
@@ -34,7 +34,7 @@ export default function BriefingHeader({ itemCount, onVoiceClick }: BriefingHead
         </div>
         <button
           onClick={onVoiceClick}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+          className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors w-full sm:w-auto"
         >
           <Volume2 size={18} />
           Listen to Briefing

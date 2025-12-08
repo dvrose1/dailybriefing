@@ -51,7 +51,7 @@ export default function FeedbackButtons({
   };
 
   return (
-    <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-slate-100">
       <div className="flex items-center gap-2 relative">
         <button
           onClick={handleThumbsUp}
@@ -99,14 +99,15 @@ export default function FeedbackButtons({
       <div className="flex items-center gap-2">
         <button
           onClick={onWatch}
-          className="flex items-center gap-1 px-3 py-1.5 text-sm text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+          className="flex items-center gap-1 px-2 sm:px-3 py-1.5 text-xs sm:text-sm text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
         >
           <Eye size={14} />
-          Watch topic
+          <span className="hidden sm:inline">Watch topic</span>
+          <span className="sm:hidden">Watch</span>
         </button>
         <button
           onClick={onDismiss}
-          className="flex items-center gap-1 px-3 py-1.5 text-sm text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+          className="flex items-center gap-1 px-2 sm:px-3 py-1.5 text-xs sm:text-sm text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
         >
           <X size={14} />
           Dismiss

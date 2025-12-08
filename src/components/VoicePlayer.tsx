@@ -129,11 +129,11 @@ export default function VoicePlayer({ isOpen, onClose }: VoicePlayerProps) {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-lg z-40 animate-slide-up">
-      <div className="max-w-3xl mx-auto px-6 py-4">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 text-slate-600">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 text-slate-600 shrink-0">
             <Volume2 size={20} />
-            <span className="text-sm font-medium">Voice Briefing</span>
+            <span className="text-sm font-medium hidden sm:inline">Voice Briefing</span>
           </div>
 
           {isDemoMode ? (
