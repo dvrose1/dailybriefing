@@ -19,6 +19,7 @@ export default function Home() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [visibleInsights, setVisibleInsights] = useState<Insight[]>(initialInsights);
   const [dismissedInsight, setDismissedInsight] = useState<Insight | null>(null);
+  const [dismissingId, setDismissingId] = useState<string | null>(null);
   const [activeAction, setActiveAction] = useState<RecommendedAction | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isVoiceOpen, setIsVoiceOpen] = useState(false);
@@ -32,9 +33,13 @@ export default function Home() {
   };
 
   const handleDismiss = useCallback((insight: Insight) => {
-    setDismissedInsight(insight);
-    setVisibleInsights((prev) => prev.filter((i) => i.id !== insight.id));
-    setExpandedId(null);
+    setDismissingId(insight.id);
+    setTimeout(() => {
+      setDismissedInsight(insight);
+      setVisibleInsights((prev) => prev.filter((i) => i.id !== insight.id));
+      setExpandedId(null);
+      setDismissingId(null);
+    }, 300);
   }, []);
 
   const handleUndo = useCallback(() => {
@@ -59,12 +64,15 @@ export default function Home() {
 
       <div className="space-y-4">
         {visibleInsights.map((insight) => (
-          <InsightCard
+          <div
             key={insight.id}
-            insight={insight}
-            isExpanded={expandedId === insight.id}
-            onToggle={() => handleToggle(insight.id)}
+            className={dismissingId === insight.id ? 'animate-slide-out-right' : ''}
           >
+            <InsightCard
+              insight={insight}
+              isExpanded={expandedId === insight.id}
+              onToggle={() => handleToggle(insight.id)}
+            >
             {expandedId === insight.id && (
               <>
                 <InsightCardExpanded
@@ -73,13 +81,14 @@ export default function Home() {
                 />
                 <FeedbackButtons
                   onThumbsUp={() => console.log('Thumbs up:', insight.id)}
-                  onThumbsDown={() => console.log('Thumbs down:', insight.id)}
+                  onThumbsDown={(reason) => console.log('Thumbs down:', insight.id, reason)}
                   onDismiss={() => handleDismiss(insight)}
                   onWatch={() => console.log('Watch:', insight.id)}
                 />
               </>
             )}
-          </InsightCard>
+            </InsightCard>
+          </div>
         ))}
       </div>
 

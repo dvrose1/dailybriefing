@@ -8,10 +8,17 @@ import { ThumbsUp, ThumbsDown, X, Eye } from 'lucide-react';
 
 interface FeedbackButtonsProps {
   onThumbsUp: () => void;
-  onThumbsDown: () => void;
+  onThumbsDown: (reason?: string) => void;
   onDismiss: () => void;
   onWatch: () => void;
 }
+
+const THUMBS_DOWN_REASONS = [
+  'Not relevant to me',
+  'Not accurate',
+  'Already knew this',
+  'Other',
+];
 
 export default function FeedbackButtons({
   onThumbsUp,
@@ -21,24 +28,31 @@ export default function FeedbackButtons({
 }: FeedbackButtonsProps) {
   const [feedback, setFeedback] = useState<'up' | 'down' | null>(null);
   const [showThankYou, setShowThankYou] = useState(false);
+  const [showDownDropdown, setShowDownDropdown] = useState(false);
 
   const handleThumbsUp = () => {
     setFeedback('up');
     setShowThankYou(true);
+    setShowDownDropdown(false);
     onThumbsUp();
     setTimeout(() => setShowThankYou(false), 2000);
   };
 
   const handleThumbsDown = () => {
     setFeedback('down');
+    setShowDownDropdown(true);
+  };
+
+  const handleReasonSelect = (reason: string) => {
+    setShowDownDropdown(false);
     setShowThankYou(true);
-    onThumbsDown();
+    onThumbsDown(reason);
     setTimeout(() => setShowThankYou(false), 2000);
   };
 
   return (
     <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 relative">
         <button
           onClick={handleThumbsUp}
           className={`p-2 rounded-lg transition-colors ${
@@ -61,6 +75,20 @@ export default function FeedbackButtons({
         >
           <ThumbsDown size={18} />
         </button>
+        {showDownDropdown && (
+          <div className="absolute left-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg py-1 z-10 min-w-[160px]">
+            <p className="px-3 py-1 text-xs text-slate-500 font-medium">What was wrong?</p>
+            {THUMBS_DOWN_REASONS.map((reason) => (
+              <button
+                key={reason}
+                onClick={() => handleReasonSelect(reason)}
+                className="w-full text-left px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+              >
+                {reason}
+              </button>
+            ))}
+          </div>
+        )}
         {showThankYou && (
           <span className="text-xs text-slate-500 ml-2">
             Thanks! This helps me learn.
