@@ -41,3 +41,53 @@ export interface BriefMeMessage {
   content: string;
   timestamp: Date;
 }
+
+export interface WeeklyTheme {
+  id: string;
+  headline: string;
+  synthesis: string;
+  relatedDays: string[];
+  suggestedFocus: string;
+}
+
+export interface ActionGap {
+  item: string;
+  day: string;
+  issue: string;
+  actionLabel: string;
+}
+
+export interface WeeklyStats {
+  insightsSurfaced: number;
+  actionsTaken: number;
+  dismissed: number;
+  engagementRate: number;
+  engagementChange: number;
+}
+
+export interface WeeklyData {
+  weekRange: string;
+  themeCount: number;
+  actionGapsCount: number;
+  themes: WeeklyTheme[];
+  actionGaps: ActionGap[];
+  stats: WeeklyStats;
+}
+
+export interface TopicEngagement {
+  topic: string;
+  percentage: number;
+  color: string;
+}
+
+export interface LearningPatterns {
+  avgReviewTime: string;
+  mostActiveDay: string;
+  preferredAction: string;
+}
+
+export interface LearningData {
+  topicEngagement: TopicEngagement[];
+  patterns: LearningPatterns;
+  learnedPreferences: string[];
+}

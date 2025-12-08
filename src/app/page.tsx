@@ -1,5 +1,5 @@
 // ABOUTME: Main briefing page displaying insight cards and interactions.
-// ABOUTME: Manages state for card expansion, modals, and voice playback.
+// ABOUTME: Manages state for card expansion, modals, voice playback, and view toggle.
 
 'use client';
 
@@ -12,7 +12,11 @@ import ActionModal from '@/components/ActionModal';
 import UndoToast from '@/components/UndoToast';
 import BriefMeChat from '@/components/BriefMeChat';
 import VoicePlayer from '@/components/VoicePlayer';
+import WeeklyView from '@/components/WeeklySynthesis/WeeklyView';
+import WhatYouTaughtMePanel from '@/components/WhatYouTaughtMe/WhatYouTaughtMePanel';
 import { insights as initialInsights } from '@/data/insights';
+import { weeklyData } from '@/data/weekly';
+import { learningData } from '@/data/learning';
 import { Insight, RecommendedAction } from '@/types';
 
 export default function Home() {
@@ -23,6 +27,8 @@ export default function Home() {
   const [activeAction, setActiveAction] = useState<RecommendedAction | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isVoiceOpen, setIsVoiceOpen] = useState(false);
+  const [activeView, setActiveView] = useState<'daily' | 'weekly'>('daily');
+  const [isLearningOpen, setIsLearningOpen] = useState(false);
 
   const handleToggle = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
@@ -60,8 +66,20 @@ export default function Home() {
 
   return (
     <div className="max-w-3xl mx-auto p-4 sm:p-6">
-      <BriefingHeader itemCount={visibleInsights.length} onVoiceClick={handleVoiceClick} />
+      <BriefingHeader 
+        itemCount={visibleInsights.length} 
+        onVoiceClick={handleVoiceClick}
+        activeView={activeView}
+        onViewToggle={setActiveView}
+        onLearningClick={() => setIsLearningOpen(true)}
+      />
 
+      {activeView === 'weekly' ? (
+        <WeeklyView 
+          data={weeklyData} 
+          onActionGap={(gap) => console.log('Action gap clicked:', gap)}
+        />
+      ) : (
       <div className="space-y-4">
         {visibleInsights.map((insight) => (
           <div
@@ -91,6 +109,7 @@ export default function Home() {
           </div>
         ))}
       </div>
+      )}
 
       {activeAction && (
         <ActionModal
@@ -110,6 +129,11 @@ export default function Home() {
 
       <BriefMeChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
       <VoicePlayer isOpen={isVoiceOpen} onClose={() => setIsVoiceOpen(false)} />
+      <WhatYouTaughtMePanel 
+        isOpen={isLearningOpen} 
+        onClose={() => setIsLearningOpen(false)}
+        data={learningData}
+      />
 
       <button
         onClick={() => setIsChatOpen(true)}
