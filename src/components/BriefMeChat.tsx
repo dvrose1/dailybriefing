@@ -1,5 +1,5 @@
 // ABOUTME: Conversational chat interface for the Brief Me feature.
-// ABOUTME: Editorial style with understated message bubbles.
+// ABOUTME: Fluent Premium style with Microsoft blue accent.
 
 'use client';
 
@@ -105,7 +105,7 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
         >
           <div className="flex items-center gap-2">
             <MessageSquare size={20} style={{ color: 'var(--accent)' }} />
-            <h2 className="font-serif text-xl" style={{ color: 'var(--foreground)' }}>Brief Me</h2>
+            <h2 className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>Brief Me</h2>
           </div>
           <button
             onClick={onClose}
@@ -235,10 +235,10 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
             <button
               type="submit"
               disabled={!input.trim() || isLoading}
-              className="px-4 py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ background: 'var(--foreground)', color: 'white' }}
-              onMouseEnter={(e) => { if (input.trim() && !isLoading) e.currentTarget.style.background = '#333'; }}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--foreground)'}
+              className="px-4 py-3 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ background: 'var(--accent)', color: 'white' }}
+              onMouseEnter={(e) => { if (input.trim() && !isLoading) e.currentTarget.style.background = 'var(--accent-hover)'; }}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--accent)'}
             >
               <Send size={18} />
             </button>

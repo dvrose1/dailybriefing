@@ -1,5 +1,5 @@
 // ABOUTME: Modal for taking actions on insights (schedule meeting, draft email).
-// ABOUTME: Editorial style with warm colors and clean form inputs.
+// ABOUTME: Fluent Premium style with Microsoft blue accent buttons.
 
 'use client';
 
@@ -51,7 +51,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
           >
             <Check size={32} style={{ color: 'var(--informational)' }} />
           </div>
-          <h3 className="font-serif text-xl" style={{ color: 'var(--foreground)' }}>
+          <h3 className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
             {action.type === 'schedule_meeting' && 'Meeting Scheduled!'}
             {action.type === 'draft_email' && 'Email Drafted!'}
             {action.type === 'add_to_deck' && 'Added to Deck!'}
@@ -79,7 +79,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
         >
           <div className="flex items-center gap-3">
             {getIcon()}
-            <h2 className="font-serif text-xl" style={{ color: 'var(--foreground)' }}>{action.label}</h2>
+            <h2 className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>{action.label}</h2>
           </div>
           <button
             onClick={onClose}
@@ -282,10 +282,10 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
           </button>
           <button
             onClick={handleSubmit}
-            className="px-5 py-2.5 text-sm font-medium rounded transition-colors"
-            style={{ background: 'var(--foreground)', color: 'white' }}
-            onMouseEnter={(e) => e.currentTarget.style.background = '#333'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'var(--foreground)'}
+            className="px-5 py-2.5 text-sm font-medium rounded-md transition-colors"
+            style={{ background: 'var(--accent)', color: 'white' }}
+            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--accent-hover)'}
+            onMouseLeave={(e) => e.currentTarget.style.background = 'var(--accent)'}
           >
             {action.type === 'schedule_meeting' && 'Schedule'}
             {action.type === 'draft_email' && 'Send Draft'}

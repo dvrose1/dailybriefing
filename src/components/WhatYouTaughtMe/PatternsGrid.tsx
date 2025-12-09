@@ -1,5 +1,5 @@
 // ABOUTME: Grid displaying user briefing patterns.
-// ABOUTME: Shows avg review time, most active day, and preferred actions.
+// ABOUTME: Fluent Premium style with subtle card backgrounds.
 
 import { LearningPatterns } from '@/types';
 
@@ -10,26 +10,38 @@ interface PatternsGridProps {
 export default function PatternsGrid({ patterns }: PatternsGridProps) {
   return (
     <div>
-      <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
+      <h3 
+        className="text-[11px] font-semibold uppercase mb-4"
+        style={{ color: 'var(--text-tertiary)', letterSpacing: '0.5px' }}
+      >
         Your briefing patterns
       </h3>
       
       <div className="grid grid-cols-3 gap-3">
-        <div className="bg-slate-50 rounded-lg p-3 text-center">
-          <p className="text-xs text-slate-500 mb-1">Avg. Review Time</p>
-          <p className="text-xl sm:text-2xl font-semibold text-slate-800">
+        <div 
+          className="rounded-lg p-3 text-center"
+          style={{ background: 'var(--bg-hover)' }}
+        >
+          <p className="text-[11px] mb-1" style={{ color: 'var(--text-tertiary)' }}>Avg. Review Time</p>
+          <p className="text-xl sm:text-2xl font-semibold" style={{ color: 'var(--foreground)' }}>
             {patterns.avgReviewTime}
           </p>
         </div>
-        <div className="bg-slate-50 rounded-lg p-3 text-center">
-          <p className="text-xs text-slate-500 mb-1">Most Active Day</p>
-          <p className="text-xl sm:text-2xl font-semibold text-slate-800">
+        <div 
+          className="rounded-lg p-3 text-center overflow-hidden"
+          style={{ background: 'var(--bg-hover)' }}
+        >
+          <p className="text-[11px] mb-1" style={{ color: 'var(--text-tertiary)' }}>Most Active Day</p>
+          <p className="text-sm sm:text-base font-semibold truncate" style={{ color: 'var(--foreground)' }}>
             {patterns.mostActiveDay}
           </p>
         </div>
-        <div className="bg-slate-50 rounded-lg p-3 text-center">
-          <p className="text-xs text-slate-500 mb-1">Preferred Action</p>
-          <p className="text-sm sm:text-base font-semibold text-slate-800 leading-tight">
+        <div 
+          className="rounded-lg p-3 text-center"
+          style={{ background: 'var(--bg-hover)' }}
+        >
+          <p className="text-[11px] mb-1" style={{ color: 'var(--text-tertiary)' }}>Preferred Action</p>
+          <p className="text-sm sm:text-base font-semibold leading-tight" style={{ color: 'var(--foreground)' }}>
             {patterns.preferredAction}
           </p>
         </div>

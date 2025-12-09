@@ -1,5 +1,5 @@
 // ABOUTME: Horizontal bar chart showing topic engagement percentages.
-// ABOUTME: Editorial style with warm accent color for progress bars.
+// ABOUTME: Fluent Premium style with Microsoft blue accent bars.
 
 import { TopicEngagement } from '@/types';
 
@@ -9,11 +9,11 @@ interface TopicEngagementChartProps {
 
 export default function TopicEngagementChart({ data }: TopicEngagementChartProps) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <div>
         <h3 
-          className="text-xs font-semibold uppercase tracking-wide mb-1"
-          style={{ color: 'var(--text-secondary)', letterSpacing: '0.08em' }}
+          className="text-[11px] font-semibold uppercase mb-1"
+          style={{ color: 'var(--text-tertiary)', letterSpacing: '0.5px' }}
         >
           Topics you engage with most
         </h3>
@@ -22,32 +22,34 @@ export default function TopicEngagementChart({ data }: TopicEngagementChartProps
         </p>
       </div>
       
-      <div className="space-y-2">
+      <div className="space-y-4">
         {data.map((item) => (
-          <div key={item.topic} className="flex items-center gap-3">
-            <div 
-              className="w-32 sm:w-40 text-sm truncate shrink-0"
-              style={{ color: 'var(--text-body)' }}
-            >
-              {item.topic}
+          <div key={item.topic}>
+            <div className="flex items-center justify-between mb-1.5">
+              <span 
+                className="text-[13px]"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                {item.topic}
+              </span>
+              <span 
+                className="text-[13px]"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                {item.percentage}%
+              </span>
             </div>
             <div 
-              className="flex-1 h-2 rounded overflow-hidden"
-              style={{ background: 'var(--bg-elevated)' }}
+              className="h-1.5 rounded-sm overflow-hidden"
+              style={{ background: 'var(--bg-hover)' }}
             >
               <div
-                className="h-full rounded transition-all duration-500"
+                className="h-full rounded-sm transition-all duration-500"
                 style={{ 
                   width: `${item.percentage}%`,
                   background: 'var(--accent)'
                 }}
               />
-            </div>
-            <div 
-              className="w-10 text-sm text-right shrink-0"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              {item.percentage}%
             </div>
           </div>
         ))}

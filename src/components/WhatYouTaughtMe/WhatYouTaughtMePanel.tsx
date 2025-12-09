@@ -1,5 +1,5 @@
 // ABOUTME: Slide-out panel showing what the AI has learned from user feedback.
-// ABOUTME: Editorial style with warm colors and generous spacing.
+// ABOUTME: Fluent Premium style with shadows and Microsoft-native styling.
 
 'use client';
 
@@ -30,33 +30,39 @@ export default function WhatYouTaughtMePanel({
       />
       
       <div 
-        className="absolute right-0 top-0 bottom-0 w-full sm:w-[400px] shadow-xl animate-slide-in-right overflow-y-auto"
-        style={{ background: 'var(--bg-card)' }}
+        className="absolute right-0 top-0 bottom-0 w-full sm:w-[360px] animate-slide-in-right overflow-y-auto"
+        style={{ background: 'var(--bg-card)', boxShadow: '-4px 0 16px rgba(0, 0, 0, 0.1)' }}
       >
         <div 
           className="sticky top-0 p-5 flex items-center justify-between"
           style={{ background: 'var(--bg-card)', borderBottom: '1px solid var(--border)' }}
         >
           <div>
-            <h2 className="font-serif text-xl" style={{ color: 'var(--foreground)' }}>
+            <h2 className="text-lg font-semibold" style={{ color: 'var(--foreground)' }}>
               What You've Taught Me
             </h2>
-            <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-[13px] mt-1" style={{ color: 'var(--text-tertiary)' }}>
               Your feedback shapes your briefings
             </p>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded transition-colors"
-            style={{ color: 'var(--text-secondary)' }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-elevated)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+            className="p-2 rounded-md transition-colors"
+            style={{ color: 'var(--text-tertiary)' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--bg-hover)';
+              e.currentTarget.style.color = 'var(--text-secondary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = 'var(--text-tertiary)';
+            }}
           >
             <X size={20} />
           </button>
         </div>
 
-        <div className="p-5 space-y-6">
+        <div className="p-6 space-y-6">
           <TopicEngagementChart data={data.topicEngagement} />
           
           <div className="pt-6" style={{ borderTop: '1px solid var(--border)' }}>
@@ -69,25 +75,25 @@ export default function WhatYouTaughtMePanel({
           
           <div className="pt-6" style={{ borderTop: '1px solid var(--border)' }}>
             <h3 
-              className="text-xs font-semibold uppercase tracking-wide mb-3"
-              style={{ color: 'var(--text-secondary)', letterSpacing: '0.08em' }}
+              className="text-[11px] font-semibold uppercase mb-4"
+              style={{ color: 'var(--text-tertiary)', letterSpacing: '0.5px' }}
             >
               Adjust my learning
             </h3>
             <div className="flex flex-wrap gap-2">
               <button 
-                className="flex items-center gap-2 px-3 py-2 text-sm rounded transition-colors"
+                className="flex items-center gap-2 px-3 py-2 text-sm rounded-md transition-colors"
                 style={{ color: 'var(--text-secondary)' }}
-                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-elevated)'}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-hover)'}
                 onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
               >
                 <RotateCcw size={16} />
                 Reset my preferences
               </button>
               <button 
-                className="flex items-center gap-2 px-3 py-2 text-sm rounded transition-colors"
+                className="flex items-center gap-2 px-3 py-2 text-sm rounded-md transition-colors"
                 style={{ color: 'var(--text-secondary)' }}
-                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-elevated)'}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-hover)'}
                 onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
               >
                 <MessageSquare size={16} />
