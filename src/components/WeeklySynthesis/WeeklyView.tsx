@@ -1,5 +1,5 @@
 // ABOUTME: Main container for the Weekly Synthesis view.
-// ABOUTME: Displays week header, theme cards, action gaps, and stats.
+// ABOUTME: Editorial style with warm colors and generous spacing.
 
 import { WeeklyData, ActionGap } from '@/types';
 import ThemeCard from './ThemeCard';
@@ -15,17 +15,17 @@ export default function WeeklyView({ data, onActionGap }: WeeklyViewProps) {
   return (
     <div className="space-y-6">
       <header className="mb-6">
-        <h1 className="text-xl sm:text-2xl font-semibold text-slate-800">
+        <h1 className="font-serif text-2xl sm:text-[28px]" style={{ color: 'var(--foreground)' }}>
           Week in Review
         </h1>
-        <p className="text-sm text-slate-500 mt-1">{data.weekRange}</p>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm mt-1" style={{ color: 'var(--text-tertiary)' }}>{data.weekRange}</p>
+        <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
           {data.themeCount} themes · {data.actionGapsCount} action gaps identified
         </p>
-        <div className="mt-4 border-b border-slate-200" />
+        <div className="mt-4" style={{ borderBottom: '1px solid var(--border)' }} />
       </header>
 
-      <div className="space-y-4">
+      <div className="space-y-0">
         {data.themes.map((theme) => (
           <ThemeCard key={theme.id} theme={theme} />
         ))}

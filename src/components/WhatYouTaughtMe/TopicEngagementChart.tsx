@@ -1,5 +1,5 @@
 // ABOUTME: Horizontal bar chart showing topic engagement percentages.
-// ABOUTME: Displays which topics the user engages with most.
+// ABOUTME: Editorial style with warm accent color for progress bars.
 
 import { TopicEngagement } from '@/types';
 
@@ -11,10 +11,13 @@ export default function TopicEngagementChart({ data }: TopicEngagementChartProps
   return (
     <div className="space-y-3">
       <div>
-        <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">
+        <h3 
+          className="text-xs font-semibold uppercase tracking-wide mb-1"
+          style={{ color: 'var(--text-secondary)', letterSpacing: '0.08em' }}
+        >
           Topics you engage with most
         </h3>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
           Based on cards you expanded, acted on, or marked helpful
         </p>
       </div>
@@ -22,19 +25,28 @@ export default function TopicEngagementChart({ data }: TopicEngagementChartProps
       <div className="space-y-2">
         {data.map((item) => (
           <div key={item.topic} className="flex items-center gap-3">
-            <div className="w-32 sm:w-40 text-sm text-slate-700 truncate shrink-0">
+            <div 
+              className="w-32 sm:w-40 text-sm truncate shrink-0"
+              style={{ color: 'var(--text-body)' }}
+            >
               {item.topic}
             </div>
-            <div className="flex-1 h-4 bg-slate-100 rounded-full overflow-hidden">
+            <div 
+              className="flex-1 h-2 rounded overflow-hidden"
+              style={{ background: 'var(--bg-elevated)' }}
+            >
               <div
-                className="h-full rounded-full transition-all duration-500"
+                className="h-full rounded transition-all duration-500"
                 style={{ 
                   width: `${item.percentage}%`,
-                  backgroundColor: item.color 
+                  background: 'var(--accent)'
                 }}
               />
             </div>
-            <div className="w-10 text-sm text-slate-500 text-right shrink-0">
+            <div 
+              className="w-10 text-sm text-right shrink-0"
+              style={{ color: 'var(--text-secondary)' }}
+            >
               {item.percentage}%
             </div>
           </div>

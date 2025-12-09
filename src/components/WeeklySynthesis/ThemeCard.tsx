@@ -1,5 +1,5 @@
 // ABOUTME: Card component for displaying weekly synthesis themes.
-// ABOUTME: Shows headline, synthesis paragraph, related days, and suggested focus.
+// ABOUTME: Editorial style with serif headlines and warm accent color.
 
 import { WeeklyTheme } from '@/types';
 
@@ -9,29 +9,38 @@ interface ThemeCardProps {
 
 export default function ThemeCard({ theme }: ThemeCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-sm p-5 sm:p-6">
-      <div className="flex items-center gap-2 mb-3">
-        <span className="w-2 h-2 rounded-full bg-blue-600" />
-        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
-          Theme
-        </span>
+    <div 
+      className="py-8 first:pt-0"
+      style={{ borderBottom: '1px solid var(--border)' }}
+    >
+      <div 
+        className="text-xs font-semibold uppercase tracking-wide mb-2"
+        style={{ color: 'var(--accent)', letterSpacing: '0.08em' }}
+      >
+        Theme
       </div>
 
-      <h3 className="text-lg sm:text-xl font-semibold text-slate-800 mb-3">
+      <h3 
+        className="font-serif text-xl sm:text-[22px] mb-3 leading-snug"
+        style={{ color: 'var(--foreground)' }}
+      >
         {theme.headline}
       </h3>
 
-      <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-4">
+      <p 
+        className="text-[15px] leading-relaxed mb-4"
+        style={{ color: 'var(--text-body)', lineHeight: '1.65' }}
+      >
         {theme.synthesis}
       </p>
 
       <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm">
-        <div className="text-slate-500">
+        <div style={{ color: 'var(--text-secondary)' }}>
           <span className="font-medium">Related briefings:</span>{' '}
           {theme.relatedDays.join(', ')}
         </div>
-        <div className="hidden sm:block text-slate-300">•</div>
-        <div className="text-blue-600 font-medium">
+        <div className="hidden sm:block" style={{ color: 'var(--border)' }}>•</div>
+        <div className="font-medium" style={{ color: 'var(--accent)' }}>
           Suggested focus: {theme.suggestedFocus}
         </div>
       </div>

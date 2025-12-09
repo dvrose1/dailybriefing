@@ -1,5 +1,5 @@
 // ABOUTME: Conversational chat interface for the Brief Me feature.
-// ABOUTME: Allows users to ask follow-up questions about their briefing.
+// ABOUTME: Editorial style with understated message bubbles.
 
 'use client';
 
@@ -95,25 +95,34 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-fade-in">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-lg mx-4 h-[600px] max-h-[80vh] flex flex-col animate-scale-in">
-        <div className="flex items-center justify-between p-4 border-b border-slate-200">
+      <div 
+        className="rounded-lg shadow-xl w-full max-w-lg mx-4 h-[600px] max-h-[80vh] flex flex-col animate-scale-in"
+        style={{ background: 'var(--bg-card)' }}
+      >
+        <div 
+          className="flex items-center justify-between p-5"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
           <div className="flex items-center gap-2">
-            <MessageSquare className="text-blue-600" size={20} />
-            <h2 className="text-lg font-semibold text-slate-800">Brief Me</h2>
+            <MessageSquare size={20} style={{ color: 'var(--accent)' }} />
+            <h2 className="font-serif text-xl" style={{ color: 'var(--foreground)' }}>Brief Me</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="p-2 rounded transition-colors"
+            style={{ color: 'var(--text-secondary)' }}
+            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-elevated)'}
+            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
           >
-            <X size={20} className="text-slate-500" />
+            <X size={20} />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-5 space-y-4">
           {messages.length === 0 && (
             <div className="text-center py-8">
-              <MessageSquare size={48} className="text-slate-200 mx-auto mb-4" />
-              <p className="text-slate-500 mb-4">
+              <MessageSquare size={48} style={{ color: 'var(--border)' }} className="mx-auto mb-4" />
+              <p className="mb-4" style={{ color: 'var(--text-secondary)' }}>
                 Ask me anything about your briefing
               </p>
               <div className="flex flex-wrap justify-center gap-2">
@@ -121,7 +130,10 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
                   <button
                     key={suggestion}
                     onClick={() => sendMessage(suggestion)}
-                    className="px-3 py-1.5 text-sm bg-slate-100 text-slate-700 rounded-full hover:bg-slate-200 transition-colors"
+                    className="px-3 py-1.5 text-sm rounded-full transition-colors"
+                    style={{ background: 'var(--bg-elevated)', color: 'var(--text-body)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'var(--border)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'var(--bg-elevated)'}
                   >
                     {suggestion}
                   </button>
@@ -135,25 +147,41 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
               key={idx}
               className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
-              <div
-                className={`max-w-[80%] px-4 py-2 rounded-2xl ${
-                  message.role === 'user'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-slate-100 text-slate-800'
-                }`}
-              >
-                <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-              </div>
+              {message.role === 'user' ? (
+                <div
+                  className="max-w-[80%] px-4 py-3 rounded-xl"
+                  style={{ 
+                    background: 'var(--bg-elevated)', 
+                    color: 'var(--text-body)',
+                    borderRadius: '12px 12px 4px 12px'
+                  }}
+                >
+                  <p className="text-[14px]" style={{ lineHeight: '1.5' }}>{message.content}</p>
+                </div>
+              ) : (
+                <div
+                  className="max-w-[90%] py-3"
+                  style={{ 
+                    color: 'var(--text-body)',
+                    borderBottom: '1px solid var(--border)'
+                  }}
+                >
+                  <p className="text-[15px] whitespace-pre-wrap" style={{ lineHeight: '1.6' }}>{message.content}</p>
+                </div>
+              )}
             </div>
           ))}
 
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-slate-100 px-4 py-2 rounded-2xl">
+              <div 
+                className="px-4 py-3 rounded-xl"
+                style={{ background: 'var(--bg-elevated)' }}
+              >
                 <div className="flex gap-1">
-                  <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <span className="w-2 h-2 rounded-full animate-bounce" style={{ background: 'var(--text-tertiary)', animationDelay: '0ms' }} />
+                  <span className="w-2 h-2 rounded-full animate-bounce" style={{ background: 'var(--text-tertiary)', animationDelay: '150ms' }} />
+                  <span className="w-2 h-2 rounded-full animate-bounce" style={{ background: 'var(--text-tertiary)', animationDelay: '300ms' }} />
                 </div>
               </div>
             </div>
@@ -163,14 +191,17 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
         </div>
 
         {messages.length > 0 && (
-          <div className="px-4 pb-2">
+          <div className="px-5 pb-2">
             <div className="flex flex-wrap gap-2">
               {QUICK_SUGGESTIONS.map((suggestion) => (
                 <button
                   key={suggestion}
                   onClick={() => sendMessage(suggestion)}
                   disabled={isLoading}
-                  className="px-3 py-1 text-xs bg-slate-100 text-slate-600 rounded-full hover:bg-slate-200 transition-colors disabled:opacity-50"
+                  className="px-3 py-1 text-xs rounded-full transition-colors disabled:opacity-50"
+                  style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}
+                  onMouseEnter={(e) => { if (!isLoading) e.currentTarget.style.background = 'var(--border)'; }}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'var(--bg-elevated)'}
                 >
                   {suggestion}
                 </button>
@@ -179,7 +210,11 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="p-4 border-t border-slate-200">
+        <form 
+          onSubmit={handleSubmit} 
+          className="p-5"
+          style={{ borderTop: '1px solid var(--border)' }}
+        >
           <div className="flex gap-2">
             <input
               ref={inputRef}
@@ -188,12 +223,22 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask me anything..."
               disabled={isLoading}
-              className="flex-1 px-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none disabled:bg-slate-50"
+              className="flex-1 px-4 py-3 rounded-lg text-[15px] outline-none transition-colors"
+              style={{ 
+                border: '1px solid var(--border-strong)', 
+                background: 'var(--bg-card)',
+                color: 'var(--text-body)'
+              }}
+              onFocus={(e) => e.currentTarget.style.borderColor = 'var(--text-secondary)'}
+              onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border-strong)'}
             />
             <button
               type="submit"
               disabled={!input.trim() || isLoading}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ background: 'var(--foreground)', color: 'white' }}
+              onMouseEnter={(e) => { if (input.trim() && !isLoading) e.currentTarget.style.background = '#333'; }}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--foreground)'}
             >
               <Send size={18} />
             </button>

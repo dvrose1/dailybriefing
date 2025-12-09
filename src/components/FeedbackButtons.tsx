@@ -1,10 +1,9 @@
-// ABOUTME: Feedback buttons for insight cards (thumbs up/down, dismiss).
-// ABOUTME: Provides visual feedback states and handles user interactions.
+// ABOUTME: Feedback buttons for insight cards (helpful/not relevant/dismiss).
+// ABOUTME: Text-based editorial style with subtle hover states.
 
 'use client';
 
 import { useState } from 'react';
-import { ThumbsUp, ThumbsDown, X, Eye } from 'lucide-react';
 
 interface FeedbackButtonsProps {
   onThumbsUp: () => void;
@@ -13,7 +12,7 @@ interface FeedbackButtonsProps {
   onWatch: () => void;
 }
 
-const THUMBS_DOWN_REASONS = [
+const NOT_RELEVANT_REASONS = [
   'Not relevant to me',
   'Not accurate',
   'Already knew this',
@@ -30,7 +29,7 @@ export default function FeedbackButtons({
   const [showThankYou, setShowThankYou] = useState(false);
   const [showDownDropdown, setShowDownDropdown] = useState(false);
 
-  const handleThumbsUp = () => {
+  const handleHelpful = () => {
     setFeedback('up');
     setShowThankYou(true);
     setShowDownDropdown(false);
@@ -38,7 +37,7 @@ export default function FeedbackButtons({
     setTimeout(() => setShowThankYou(false), 2000);
   };
 
-  const handleThumbsDown = () => {
+  const handleNotRelevant = () => {
     setFeedback('down');
     setShowDownDropdown(true);
   };
@@ -50,39 +49,83 @@ export default function FeedbackButtons({
     setTimeout(() => setShowThankYou(false), 2000);
   };
 
+  const buttonBaseStyle = {
+    color: 'var(--text-tertiary)',
+    border: '1px solid transparent',
+    background: 'transparent',
+  };
+
+  const buttonHoverStyle = {
+    color: 'var(--text-secondary)',
+    borderColor: 'var(--border)',
+    background: 'var(--bg-elevated)',
+  };
+
+  const buttonSelectedStyle = {
+    color: 'var(--accent)',
+    borderColor: 'var(--accent)',
+    background: 'var(--accent-light)',
+  };
+
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-slate-100">
-      <div className="flex items-center gap-2 relative">
+    <div 
+      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-5 mt-5"
+      style={{ borderTop: '1px solid var(--border)' }}
+    >
+      <div className="flex items-center gap-1 relative">
         <button
-          onClick={handleThumbsUp}
-          className={`p-2 rounded-lg transition-colors ${
-            feedback === 'up'
-              ? 'bg-green-100 text-green-600'
-              : 'hover:bg-slate-100 text-slate-400 hover:text-slate-600'
-          }`}
-          title="Helpful"
+          onClick={handleHelpful}
+          className="text-xs px-3 py-1.5 rounded transition-all"
+          style={feedback === 'up' ? buttonSelectedStyle : buttonBaseStyle}
+          onMouseEnter={(e) => {
+            if (feedback !== 'up') {
+              Object.assign(e.currentTarget.style, buttonHoverStyle);
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (feedback !== 'up') {
+              Object.assign(e.currentTarget.style, buttonBaseStyle);
+            }
+          }}
         >
-          <ThumbsUp size={18} />
+          Helpful
         </button>
         <button
-          onClick={handleThumbsDown}
-          className={`p-2 rounded-lg transition-colors ${
-            feedback === 'down'
-              ? 'bg-red-100 text-red-600'
-              : 'hover:bg-slate-100 text-slate-400 hover:text-slate-600'
-          }`}
-          title="Not helpful"
+          onClick={handleNotRelevant}
+          className="text-xs px-3 py-1.5 rounded transition-all"
+          style={feedback === 'down' ? buttonSelectedStyle : buttonBaseStyle}
+          onMouseEnter={(e) => {
+            if (feedback !== 'down') {
+              Object.assign(e.currentTarget.style, buttonHoverStyle);
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (feedback !== 'down') {
+              Object.assign(e.currentTarget.style, buttonBaseStyle);
+            }
+          }}
         >
-          <ThumbsDown size={18} />
+          Not relevant
         </button>
         {showDownDropdown && (
-          <div className="absolute left-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg py-1 z-10 min-w-[160px]">
-            <p className="px-3 py-1 text-xs text-slate-500 font-medium">What was wrong?</p>
-            {THUMBS_DOWN_REASONS.map((reason) => (
+          <div 
+            className="absolute left-0 top-full mt-1 rounded shadow-lg py-1 z-10 min-w-[160px]"
+            style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+          >
+            <p 
+              className="px-3 py-1 text-xs font-medium"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              What was wrong?
+            </p>
+            {NOT_RELEVANT_REASONS.map((reason) => (
               <button
                 key={reason}
                 onClick={() => handleReasonSelect(reason)}
-                className="w-full text-left px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+                className="w-full text-left px-3 py-1.5 text-sm transition-colors"
+                style={{ color: 'var(--text-body)' }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-elevated)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
               >
                 {reason}
               </button>
@@ -90,26 +133,29 @@ export default function FeedbackButtons({
           </div>
         )}
         {showThankYou && (
-          <span className="text-xs text-slate-500 ml-2">
+          <span className="text-xs ml-2" style={{ color: 'var(--text-secondary)' }}>
             Thanks! This helps me learn.
           </span>
         )}
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         <button
           onClick={onWatch}
-          className="flex items-center gap-1 px-2 sm:px-3 py-1.5 text-xs sm:text-sm text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+          className="text-xs px-3 py-1.5 rounded transition-all"
+          style={buttonBaseStyle}
+          onMouseEnter={(e) => Object.assign(e.currentTarget.style, buttonHoverStyle)}
+          onMouseLeave={(e) => Object.assign(e.currentTarget.style, buttonBaseStyle)}
         >
-          <Eye size={14} />
-          <span className="hidden sm:inline">Watch topic</span>
-          <span className="sm:hidden">Watch</span>
+          Watch topic
         </button>
         <button
           onClick={onDismiss}
-          className="flex items-center gap-1 px-2 sm:px-3 py-1.5 text-xs sm:text-sm text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+          className="text-xs px-3 py-1.5 rounded transition-all"
+          style={buttonBaseStyle}
+          onMouseEnter={(e) => Object.assign(e.currentTarget.style, buttonHoverStyle)}
+          onMouseLeave={(e) => Object.assign(e.currentTarget.style, buttonBaseStyle)}
         >
-          <X size={14} />
           Dismiss
         </button>
       </div>

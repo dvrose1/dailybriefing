@@ -10,24 +10,27 @@ interface ViewToggleProps {
 
 export default function ViewToggle({ activeView, onToggle }: ViewToggleProps) {
   return (
-    <div className="inline-flex bg-slate-100 rounded-lg p-1">
+    <div 
+      className="inline-flex rounded p-1"
+      style={{ background: 'var(--bg-elevated)' }}
+    >
       <button
         onClick={() => onToggle('daily')}
-        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-          activeView === 'daily'
-            ? 'bg-blue-600 text-white'
-            : 'text-slate-600 hover:text-slate-800'
-        }`}
+        className="px-3 py-1.5 text-sm font-medium rounded transition-colors"
+        style={activeView === 'daily' 
+          ? { background: 'var(--foreground)', color: 'white' }
+          : { background: 'transparent', color: 'var(--text-secondary)' }
+        }
       >
         Daily
       </button>
       <button
         onClick={() => onToggle('weekly')}
-        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-          activeView === 'weekly'
-            ? 'bg-blue-600 text-white'
-            : 'text-slate-600 hover:text-slate-800'
-        }`}
+        className="px-3 py-1.5 text-sm font-medium rounded transition-colors"
+        style={activeView === 'weekly' 
+          ? { background: 'var(--foreground)', color: 'white' }
+          : { background: 'transparent', color: 'var(--text-secondary)' }
+        }
       >
         Weekly
       </button>
