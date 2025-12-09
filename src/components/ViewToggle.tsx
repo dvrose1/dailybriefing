@@ -1,5 +1,5 @@
 // ABOUTME: Segmented control for switching between Daily and Weekly views.
-// ABOUTME: Pill-style toggle with active state highlighting.
+// ABOUTME: Fluent Premium toggle with subtle active state.
 
 'use client';
 
@@ -11,14 +11,14 @@ interface ViewToggleProps {
 export default function ViewToggle({ activeView, onToggle }: ViewToggleProps) {
   return (
     <div 
-      className="inline-flex rounded p-1"
-      style={{ background: 'var(--bg-elevated)' }}
+      className="inline-flex rounded-md p-0.5"
+      style={{ background: 'var(--bg-hover)' }}
     >
       <button
         onClick={() => onToggle('daily')}
-        className="px-3 py-1.5 text-sm font-medium rounded transition-colors"
+        className="px-3.5 py-1.5 text-[13px] font-medium rounded transition-all"
         style={activeView === 'daily' 
-          ? { background: 'var(--foreground)', color: 'white' }
+          ? { background: 'var(--bg-card)', color: 'var(--foreground)', boxShadow: 'var(--shadow-sm)' }
           : { background: 'transparent', color: 'var(--text-secondary)' }
         }
       >
@@ -26,9 +26,9 @@ export default function ViewToggle({ activeView, onToggle }: ViewToggleProps) {
       </button>
       <button
         onClick={() => onToggle('weekly')}
-        className="px-3 py-1.5 text-sm font-medium rounded transition-colors"
+        className="px-3.5 py-1.5 text-[13px] font-medium rounded transition-all"
         style={activeView === 'weekly' 
-          ? { background: 'var(--foreground)', color: 'white' }
+          ? { background: 'var(--bg-card)', color: 'var(--foreground)', boxShadow: 'var(--shadow-sm)' }
           : { background: 'transparent', color: 'var(--text-secondary)' }
         }
       >

@@ -1,9 +1,10 @@
-// ABOUTME: Feedback buttons for insight cards (helpful/not relevant/dismiss).
-// ABOUTME: Text-based editorial style with subtle hover states.
+// ABOUTME: Feedback buttons for insight cards (thumbs up/down, dismiss).
+// ABOUTME: Fluent Premium icon button style with hover states.
 
 'use client';
 
 import { useState } from 'react';
+import { ThumbsUp, ThumbsDown, X, Eye } from 'lucide-react';
 
 interface FeedbackButtonsProps {
   onThumbsUp: () => void;
@@ -49,72 +50,66 @@ export default function FeedbackButtons({
     setTimeout(() => setShowThankYou(false), 2000);
   };
 
-  const buttonBaseStyle = {
-    color: 'var(--text-tertiary)',
-    border: '1px solid transparent',
-    background: 'transparent',
-  };
-
-  const buttonHoverStyle = {
-    color: 'var(--text-secondary)',
-    borderColor: 'var(--border)',
-    background: 'var(--bg-elevated)',
-  };
-
-  const buttonSelectedStyle = {
-    color: 'var(--accent)',
-    borderColor: 'var(--accent)',
-    background: 'var(--accent-light)',
-  };
-
   return (
     <div 
-      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-5 mt-5"
+      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 mt-4"
       style={{ borderTop: '1px solid var(--border)' }}
     >
       <div className="flex items-center gap-1 relative">
         <button
           onClick={handleHelpful}
-          className="text-xs px-3 py-1.5 rounded transition-all"
-          style={feedback === 'up' ? buttonSelectedStyle : buttonBaseStyle}
+          className="p-2 rounded-md transition-all"
+          style={feedback === 'up' 
+            ? { background: 'var(--accent-light)', color: 'var(--accent)' }
+            : { background: 'transparent', color: 'var(--text-tertiary)' }
+          }
           onMouseEnter={(e) => {
             if (feedback !== 'up') {
-              Object.assign(e.currentTarget.style, buttonHoverStyle);
+              e.currentTarget.style.background = 'var(--bg-hover)';
+              e.currentTarget.style.color = 'var(--text-secondary)';
             }
           }}
           onMouseLeave={(e) => {
             if (feedback !== 'up') {
-              Object.assign(e.currentTarget.style, buttonBaseStyle);
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = 'var(--text-tertiary)';
             }
           }}
+          title="Helpful"
         >
-          Helpful
+          <ThumbsUp size={16} />
         </button>
         <button
           onClick={handleNotRelevant}
-          className="text-xs px-3 py-1.5 rounded transition-all"
-          style={feedback === 'down' ? buttonSelectedStyle : buttonBaseStyle}
+          className="p-2 rounded-md transition-all"
+          style={feedback === 'down' 
+            ? { background: 'var(--accent-light)', color: 'var(--accent)' }
+            : { background: 'transparent', color: 'var(--text-tertiary)' }
+          }
           onMouseEnter={(e) => {
             if (feedback !== 'down') {
-              Object.assign(e.currentTarget.style, buttonHoverStyle);
+              e.currentTarget.style.background = 'var(--bg-hover)';
+              e.currentTarget.style.color = 'var(--text-secondary)';
             }
           }}
           onMouseLeave={(e) => {
             if (feedback !== 'down') {
-              Object.assign(e.currentTarget.style, buttonBaseStyle);
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = 'var(--text-tertiary)';
             }
           }}
+          title="Not helpful"
         >
-          Not relevant
+          <ThumbsDown size={16} />
         </button>
         {showDownDropdown && (
           <div 
-            className="absolute left-0 top-full mt-1 rounded shadow-lg py-1 z-10 min-w-[160px]"
-            style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+            className="absolute left-0 top-full mt-1 rounded-md py-1 z-10 min-w-[160px]"
+            style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-md)' }}
           >
             <p 
               className="px-3 py-1 text-xs font-medium"
-              style={{ color: 'var(--text-secondary)' }}
+              style={{ color: 'var(--text-tertiary)' }}
             >
               What was wrong?
             </p>
@@ -123,8 +118,8 @@ export default function FeedbackButtons({
                 key={reason}
                 onClick={() => handleReasonSelect(reason)}
                 className="w-full text-left px-3 py-1.5 text-sm transition-colors"
-                style={{ color: 'var(--text-body)' }}
-                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-elevated)'}
+                style={{ color: 'var(--text-secondary)' }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-hover)'}
                 onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
               >
                 {reason}
@@ -133,7 +128,7 @@ export default function FeedbackButtons({
           </div>
         )}
         {showThankYou && (
-          <span className="text-xs ml-2" style={{ color: 'var(--text-secondary)' }}>
+          <span className="text-xs ml-2" style={{ color: 'var(--text-tertiary)' }}>
             Thanks! This helps me learn.
           </span>
         )}
@@ -142,20 +137,34 @@ export default function FeedbackButtons({
       <div className="flex items-center gap-1">
         <button
           onClick={onWatch}
-          className="text-xs px-3 py-1.5 rounded transition-all"
-          style={buttonBaseStyle}
-          onMouseEnter={(e) => Object.assign(e.currentTarget.style, buttonHoverStyle)}
-          onMouseLeave={(e) => Object.assign(e.currentTarget.style, buttonBaseStyle)}
+          className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md transition-all"
+          style={{ background: 'transparent', color: 'var(--text-tertiary)' }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--bg-hover)';
+            e.currentTarget.style.color = 'var(--text-secondary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'transparent';
+            e.currentTarget.style.color = 'var(--text-tertiary)';
+          }}
         >
-          Watch topic
+          <Eye size={14} />
+          Watch
         </button>
         <button
           onClick={onDismiss}
-          className="text-xs px-3 py-1.5 rounded transition-all"
-          style={buttonBaseStyle}
-          onMouseEnter={(e) => Object.assign(e.currentTarget.style, buttonHoverStyle)}
-          onMouseLeave={(e) => Object.assign(e.currentTarget.style, buttonBaseStyle)}
+          className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md transition-all"
+          style={{ background: 'transparent', color: 'var(--text-tertiary)' }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'var(--bg-hover)';
+            e.currentTarget.style.color = 'var(--text-secondary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'transparent';
+            e.currentTarget.style.color = 'var(--text-tertiary)';
+          }}
         >
+          <X size={14} />
           Dismiss
         </button>
       </div>

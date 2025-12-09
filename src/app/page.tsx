@@ -138,9 +138,9 @@ export default function Home() {
       <button
         onClick={() => setIsChatOpen(true)}
         className="fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg transition-colors flex items-center justify-center"
-        style={{ background: 'var(--foreground)', color: 'white' }}
-        onMouseEnter={(e) => e.currentTarget.style.background = '#333'}
-        onMouseLeave={(e) => e.currentTarget.style.background = 'var(--foreground)'}
+        style={{ background: 'var(--accent)', color: 'white', boxShadow: 'var(--shadow-lg)' }}
+        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--accent-hover)'}
+        onMouseLeave={(e) => e.currentTarget.style.background = 'var(--accent)'}
         title="Brief Me"
       >
         <svg

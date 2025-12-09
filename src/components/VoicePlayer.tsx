@@ -1,5 +1,5 @@
 // ABOUTME: Audio playback component for voice briefings.
-// ABOUTME: Minimal elegant style with thin progress bar and subtle controls.
+// ABOUTME: Fluent Premium style with accent color controls.
 
 'use client';
 
@@ -129,11 +129,11 @@ export default function VoicePlayer({ isOpen, onClose }: VoicePlayerProps) {
 
   return (
     <div 
-      className="fixed bottom-0 left-0 right-0 shadow-lg z-40 animate-slide-up"
-      style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border)' }}
+      className="fixed bottom-0 left-0 right-0 z-40 animate-slide-up"
+      style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border)', boxShadow: '0 -2px 8px rgba(0, 0, 0, 0.05)' }}
     >
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4">
-        <div className="flex items-center gap-3 sm:gap-4">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3">
+        <div className="flex items-center gap-4">
           {isDemoMode ? (
             <div className="flex-1 flex items-center justify-center">
               <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
@@ -158,32 +158,31 @@ export default function VoicePlayer({ isOpen, onClose }: VoicePlayerProps) {
             <>
               <button
                 onClick={togglePlayPause}
-                className="w-10 h-10 flex items-center justify-center rounded-full transition-colors"
-                style={{ background: 'var(--foreground)', color: 'white' }}
-                onMouseEnter={(e) => e.currentTarget.style.background = '#333'}
-                onMouseLeave={(e) => e.currentTarget.style.background = 'var(--foreground)'}
+                className="w-9 h-9 flex items-center justify-center rounded-full transition-colors"
+                style={{ background: 'var(--accent)', color: 'white' }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--accent-hover)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'var(--accent)'}
               >
-                {isPlaying ? <Pause size={18} /> : <Play size={18} className="ml-0.5" />}
+                {isPlaying ? <Pause size={16} /> : <Play size={16} className="ml-0.5" />}
               </button>
 
-              <span className="text-sm hidden sm:inline" style={{ color: 'var(--text-secondary)' }}>
-                Listening to your briefing
-              </span>
-
               <div className="flex-1">
+                <div className="text-[13px] font-medium mb-1" style={{ color: 'var(--foreground)' }}>
+                  Your Daily Briefing
+                </div>
                 <div
-                  className="h-1 rounded-full cursor-pointer"
-                  style={{ background: 'var(--bg-elevated)' }}
+                  className="h-1 rounded-sm cursor-pointer"
+                  style={{ background: 'var(--border)' }}
                   onClick={handleProgressClick}
                 >
                   <div
-                    className="h-full rounded-full transition-all"
+                    className="h-full rounded-sm transition-all"
                     style={{ width: `${progress}%`, background: 'var(--accent)' }}
                   />
                 </div>
               </div>
 
-              <div className="text-sm tabular-nums" style={{ color: 'var(--text-tertiary)' }}>
+              <div className="text-xs tabular-nums" style={{ color: 'var(--text-tertiary)' }}>
                 {formatTime(currentTime)} / {formatTime(duration)}
               </div>
             </>
@@ -191,12 +190,18 @@ export default function VoicePlayer({ isOpen, onClose }: VoicePlayerProps) {
 
           <button
             onClick={handleClose}
-            className="p-2 rounded transition-colors"
-            style={{ color: 'var(--text-secondary)' }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-elevated)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+            className="p-2 rounded-md transition-colors"
+            style={{ color: 'var(--text-tertiary)' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--bg-hover)';
+              e.currentTarget.style.color = 'var(--text-secondary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = 'var(--text-tertiary)';
+            }}
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
       </div>

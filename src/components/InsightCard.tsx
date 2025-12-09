@@ -1,5 +1,5 @@
 // ABOUTME: Collapsible insight card component for displaying briefing items.
-// ABOUTME: Shows priority pill, category, headline, summary, and expand/collapse.
+// ABOUTME: Fluent Premium style with shadows and semibold headlines.
 
 'use client';
 
@@ -15,17 +15,17 @@ interface InsightCardProps {
 
 const priorityStyles = {
   urgent: {
-    bg: '#fef2f0',
+    bg: 'var(--urgent-bg)',
     color: 'var(--urgent)',
     label: 'URGENT',
   },
   important: {
-    bg: '#fef8f0',
+    bg: 'var(--important-bg)',
     color: 'var(--important)',
     label: 'IMPORTANT',
   },
   informational: {
-    bg: '#f2f5f4',
+    bg: 'var(--informational-bg)',
     color: 'var(--informational)',
     label: 'INFO',
   },
@@ -49,49 +49,52 @@ export default function InsightCard({
 
   return (
     <div
-      className="rounded transition-colors"
+      className="rounded-lg mb-3 transition-all"
       style={{ 
         background: 'var(--bg-card)', 
         border: '1px solid var(--border)',
+        boxShadow: 'var(--shadow-sm)',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'var(--bg-elevated)';
+        e.currentTarget.style.boxShadow = 'var(--shadow-md)';
         e.currentTarget.style.borderColor = 'var(--border-strong)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'var(--bg-card)';
+        e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
         e.currentTarget.style.borderColor = 'var(--border)';
       }}
     >
       <button
         onClick={onToggle}
         className="w-full text-left"
-        style={{ padding: isExpanded ? '28px 32px 0' : '28px 32px' }}
+        style={{ padding: '20px 24px' }}
       >
-        <div className="flex items-center gap-2 mb-3">
-          <span
-            className="text-[11px] font-semibold px-2 py-0.5 rounded tracking-wide"
-            style={{ 
-              background: priority.bg, 
-              color: priority.color,
-              letterSpacing: '0.05em'
-            }}
-          >
-            {priority.label}
-          </span>
-          <span 
-            className="text-[11px] font-medium tracking-wide"
-            style={{ color: 'var(--text-tertiary)', letterSpacing: '0.05em' }}
-          >
-            {categoryLabels[insight.category]}
-          </span>
-          <span className="text-[11px] hidden sm:inline" style={{ color: 'var(--text-tertiary)' }}>
-            · {insight.updatedAt}
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <span
+              className="text-[11px] font-semibold px-2 py-1 rounded"
+              style={{ 
+                background: priority.bg, 
+                color: priority.color,
+                letterSpacing: '0.5px'
+              }}
+            >
+              {priority.label}
+            </span>
+            <span 
+              className="text-[11px] font-semibold"
+              style={{ color: 'var(--text-tertiary)', letterSpacing: '0.5px' }}
+            >
+              {categoryLabels[insight.category]}
+            </span>
+          </div>
+          <span className="text-xs hidden sm:inline" style={{ color: 'var(--text-tertiary)' }}>
+            {insight.updatedAt}
           </span>
         </div>
 
         <h3 
-          className="font-serif text-lg sm:text-xl leading-snug"
+          className="text-lg font-semibold leading-snug mb-2"
           style={{ color: 'var(--foreground)' }}
         >
           {insight.headline}
@@ -99,33 +102,38 @@ export default function InsightCard({
         
         {!isExpanded && (
           <p 
-            className="text-[15px] mt-3 leading-relaxed line-clamp-2"
-            style={{ color: 'var(--text-body)', lineHeight: '1.6' }}
+            className="text-sm leading-relaxed line-clamp-2 mb-4"
+            style={{ color: 'var(--text-secondary)', lineHeight: '1.5' }}
           >
             {insight.summary}
           </p>
         )}
 
         <div 
-          className="flex items-center justify-end mt-4 pt-4"
-          style={{ borderTop: isExpanded ? 'none' : '1px solid var(--border)' }}
+          className="flex items-center justify-between pt-4"
+          style={{ borderTop: '1px solid var(--border)' }}
         >
           <span 
-            className="flex items-center gap-1 text-[13px] font-medium"
-            style={{ color: 'var(--text-secondary)' }}
+            className="flex items-center gap-1 text-sm"
+            style={{ color: 'var(--text-tertiary)' }}
           >
-            {isExpanded ? 'Collapse' : 'Expand'}
             {isExpanded ? (
-              <ChevronUp size={16} style={{ color: 'var(--text-secondary)' }} />
+              <>
+                <ChevronUp size={16} />
+                Collapse
+              </>
             ) : (
-              <ChevronDown size={16} style={{ color: 'var(--text-secondary)' }} />
+              <>
+                <ChevronDown size={16} />
+                Expand
+              </>
             )}
           </span>
         </div>
       </button>
 
       {isExpanded && (
-        <div style={{ padding: '0 32px 28px' }}>
+        <div style={{ padding: '0 24px 20px' }}>
           {children}
         </div>
       )}

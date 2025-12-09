@@ -1,5 +1,5 @@
 // ABOUTME: Expanded content section for insight cards.
-// ABOUTME: Shows full analysis, chart, sources, confidence, and action button.
+// ABOUTME: Fluent Premium style with Microsoft blue accents.
 
 'use client';
 
@@ -14,9 +14,9 @@ interface InsightCardExpandedProps {
 }
 
 const confidenceColors = {
-  high: { bg: '#f2f5f4', color: 'var(--informational)' },
-  medium: { bg: '#fef8f0', color: 'var(--important)' },
-  low: { bg: '#fef2f0', color: 'var(--urgent)' },
+  high: { bg: 'var(--informational-bg)', color: '#107c10' },
+  medium: { bg: 'var(--important-bg)', color: 'var(--important)' },
+  low: { bg: 'var(--urgent-bg)', color: 'var(--urgent)' },
 };
 
 export default function InsightCardExpanded({
@@ -26,13 +26,13 @@ export default function InsightCardExpanded({
   const [showWhySeeing, setShowWhySeeing] = useState(false);
 
   return (
-    <div className="space-y-5 mt-4" style={{ maxWidth: '640px' }}>
+    <div className="space-y-5 mt-4">
       <div>
         {insight.expandedAnalysis.split('\n\n').map((paragraph, idx) => (
           <p 
             key={idx} 
-            className="text-[15px] mb-4"
-            style={{ color: 'var(--text-body)', lineHeight: '1.7' }}
+            className="text-sm mb-3"
+            style={{ color: 'var(--text-secondary)', lineHeight: '1.65' }}
           >
             {paragraph}
           </p>
@@ -41,8 +41,8 @@ export default function InsightCardExpanded({
 
       {insight.chartData && insight.chartData.length > 0 && (
         <div 
-          className="rounded p-4"
-          style={{ background: 'var(--bg-elevated)' }}
+          className="rounded-lg p-4"
+          style={{ background: 'var(--background)' }}
         >
           <Chart
             data={insight.chartData}
@@ -55,14 +55,14 @@ export default function InsightCardExpanded({
         {insight.sources.map((source) => (
           <span
             key={source}
-            className="text-xs px-2 py-1 rounded"
-            style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}
+            className="text-xs px-2.5 py-1 rounded"
+            style={{ background: 'var(--bg-hover)', color: 'var(--text-tertiary)' }}
           >
             {source}
           </span>
         ))}
         <span
-          className="text-xs px-2 py-1 rounded capitalize"
+          className="text-xs px-2.5 py-1 rounded capitalize"
           style={{ 
             background: confidenceColors[insight.confidence].bg, 
             color: confidenceColors[insight.confidence].color 
@@ -75,9 +75,7 @@ export default function InsightCardExpanded({
       <button
         onClick={() => setShowWhySeeing(!showWhySeeing)}
         className="flex items-center gap-1 text-[13px] transition-colors"
-        style={{ color: 'var(--text-secondary)' }}
-        onMouseEnter={(e) => e.currentTarget.style.color = 'var(--foreground)'}
-        onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+        style={{ color: 'var(--accent)' }}
       >
         <Info size={14} />
         Why am I seeing this?
@@ -86,20 +84,20 @@ export default function InsightCardExpanded({
 
       {showWhySeeing && (
         <div 
-          className="rounded p-4"
-          style={{ background: 'var(--accent-light)', border: '1px solid var(--border)' }}
+          className="rounded-md p-4"
+          style={{ background: 'var(--background)' }}
         >
-          <p className="text-sm" style={{ color: 'var(--text-body)' }}>{insight.whySeeing}</p>
+          <p className="text-[13px]" style={{ color: 'var(--text-tertiary)', lineHeight: '1.5' }}>{insight.whySeeing}</p>
         </div>
       )}
 
       <div className="pt-2">
         <button
           onClick={onActionClick}
-          className="px-5 py-2.5 text-sm font-medium rounded transition-colors"
-          style={{ background: 'var(--foreground)', color: 'white' }}
-          onMouseEnter={(e) => e.currentTarget.style.background = '#333'}
-          onMouseLeave={(e) => e.currentTarget.style.background = 'var(--foreground)'}
+          className="px-4 py-2 text-sm font-medium rounded-md transition-colors"
+          style={{ background: 'var(--accent)', color: 'white' }}
+          onMouseEnter={(e) => e.currentTarget.style.background = 'var(--accent-hover)'}
+          onMouseLeave={(e) => e.currentTarget.style.background = 'var(--accent)'}
         >
           {insight.recommendedAction.label}
         </button>
