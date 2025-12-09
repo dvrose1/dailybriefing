@@ -1,10 +1,10 @@
-// ABOUTME: Root layout with sidebar for the Daily Briefing Agent.
-// ABOUTME: Sets up the app shell with persistent navigation sidebar.
+// ABOUTME: Root layout with Microsoft Teams visual wrapper.
+// ABOUTME: Sets up the app shell to look like a Teams personal app.
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
+import TeamsWrapper from "@/components/teams/TeamsWrapper";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -24,12 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <div className="flex h-screen">
-          <div className="hidden md:block">
-            <Sidebar />
-          </div>
-          <main className="flex-1 overflow-auto">{children}</main>
-        </div>
+        <TeamsWrapper>
+          {children}
+        </TeamsWrapper>
       </body>
     </html>
   );
