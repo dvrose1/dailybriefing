@@ -65,7 +65,7 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4 sm:p-6">
+    <div className={`max-w-3xl mx-auto p-4 sm:p-6 ${isVoiceOpen ? 'pb-24' : ''}`}>
       <BriefingHeader 
         itemCount={visibleInsights.length} 
         onVoiceClick={handleVoiceClick}
@@ -137,7 +137,7 @@ export default function Home() {
 
       <button
         onClick={() => setIsChatOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg transition-colors flex items-center justify-center"
+        className={`fixed right-6 w-14 h-14 rounded-full shadow-lg transition-all flex items-center justify-center ${isVoiceOpen ? 'bottom-20' : 'bottom-6'}`}
         style={{ background: 'var(--accent)', color: 'white', boxShadow: 'var(--shadow-lg)' }}
         onMouseEnter={(e) => e.currentTarget.style.background = 'var(--accent-hover)'}
         onMouseLeave={(e) => e.currentTarget.style.background = 'var(--accent)'}
