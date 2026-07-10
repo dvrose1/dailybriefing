@@ -6,14 +6,16 @@ import ViewToggle from './ViewToggle';
 
 interface BriefingHeaderProps {
   itemCount: number;
+  personaName: string;
   onVoiceClick: () => void;
   activeView: 'daily' | 'weekly';
   onViewToggle: (view: 'daily' | 'weekly') => void;
   onLearningClick: () => void;
 }
 
-export default function BriefingHeader({ 
-  itemCount, 
+export default function BriefingHeader({
+  itemCount,
+  personaName,
   onVoiceClick,
   activeView,
   onViewToggle,
@@ -36,7 +38,7 @@ export default function BriefingHeader({
         <div>
           <div className="flex items-center gap-3">
             <h1 className="text-xl sm:text-2xl font-semibold text-slate-800">
-              {greeting}, Sarah
+              {greeting}, {personaName.split(' ')[0]}
             </h1>
             <button
               onClick={onLearningClick}

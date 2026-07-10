@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import TeamsWrapper from "@/components/teams/TeamsWrapper";
+import { StoreProvider } from "@/lib/store";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -24,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <TeamsWrapper>
-          {children}
-        </TeamsWrapper>
+        <StoreProvider>
+          <TeamsWrapper>
+            {children}
+          </TeamsWrapper>
+        </StoreProvider>
       </body>
     </html>
   );
