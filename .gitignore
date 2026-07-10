@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Internal working docs, not for the public repo
+AGENTS.md
+COS_PHASE1_PROTOTYPE_BRIEF.md
+HANDOFF.md
+factory-*.md
