@@ -44,7 +44,8 @@ interface StoreValue extends PersistedState {
   addSignal: (
     signal: Omit<Signal, 'id' | 'createdAt' | 'status'>,
   ) => void;
-  approveSignal: (signalId: string) => void;
+  updateSignal: (signal: Signal) => void;
+  approveSignal: (signalId: string, manualPersonaIds?: string[]) => void;
   dismissSignal: (signalId: string) => void;
   setRelevance: (
     deliveryId: string,
@@ -125,12 +126,26 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     [],
   );
 
-  const approveSignal = useCallback((signalId: string) => {
+  const updateSignal = useCallback((signal: Signal) => {
+    setState((s) => ({
+      ...s,
+      signals: s.signals.map((sig) => (sig.id === signal.id ? signal : sig)),
+    }));
+  }, []);
+
+  // Approving resolves the audience via the routing rules. For unmatched
+  // signals, ops can pass hand-picked recipients (manual routing).
+  const approveSignal = useCallback((signalId: string, manualPersonaIds?: string[]) => {
     setState((s) => {
       const signal = s.signals.find((sig) => sig.id === signalId);
       if (!signal) return s;
 
-      const { matches } = resolveAudience(signal, s.personas);
+      const matches = manualPersonaIds?.length
+        ? manualPersonaIds.map((personaId) => ({
+            personaId,
+            rule: 'No rule matched. Manually routed by ops.',
+          }))
+        : resolveAudience(signal, s.personas).matches;
       const newDeliveries: Delivery[] = matches.map((m, i) => {
         const persona = s.personas.find((p) => p.id === m.personaId)!;
         const priorRealtime = s.deliveries.filter(
@@ -196,6 +211,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       updateProfile,
       completeOnboarding,
       addSignal,
+      updateSignal,
       approveSignal,
       dismissSignal,
       setRelevance,
@@ -208,6 +224,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       updateProfile,
       completeOnboarding,
       addSignal,
+      updateSignal,
       approveSignal,
       dismissSignal,
       setRelevance,
