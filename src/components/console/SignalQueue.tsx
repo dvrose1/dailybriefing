@@ -53,7 +53,7 @@ export default function SignalQueue() {
 
         if (editingId === signal.id) {
           return (
-            <div key={signal.id} className="bg-white border border-blue-300 rounded-lg p-4">
+            <div key={signal.id} className="bg-white border border-primary/40 rounded-lg p-4">
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3">
                 Editing signal
               </p>
@@ -101,7 +101,7 @@ export default function SignalQueue() {
               <div className="flex items-center gap-1 shrink-0">
                 <button
                   onClick={() => setEditingId(signal.id)}
-                  className="p-1.5 text-slate-400 hover:text-blue-600 rounded hover:bg-slate-100"
+                  className="p-1.5 text-slate-400 hover:text-primary rounded hover:bg-slate-100"
                   title="Edit signal"
                 >
                   <Pencil size={15} />
@@ -134,8 +134,8 @@ export default function SignalQueue() {
                           onClick={() => togglePick(signal.id, p.id)}
                           className={`px-2 py-0.5 rounded text-xs border ${
                             picks.includes(p.id)
-                              ? 'bg-blue-600 text-white border-blue-600'
-                              : 'bg-white text-slate-600 border-slate-200 hover:border-blue-400'
+                              ? 'bg-primary text-white border-primary'
+                              : 'bg-white text-slate-600 border-slate-200 hover:border-primary/50'
                           }`}
                         >
                           {p.name}
@@ -144,7 +144,7 @@ export default function SignalQueue() {
                     <button
                       onClick={() => approveSignal(signal.id, picks)}
                       disabled={picks.length === 0}
-                      className="flex items-center gap-1 px-3 py-1 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700 disabled:opacity-40"
+                      className="flex items-center gap-1 px-3 py-1 text-xs font-medium text-white bg-primary rounded hover:bg-primary-strong disabled:opacity-40"
                     >
                       <Check size={13} />
                       Approve to selected
@@ -185,7 +185,7 @@ export default function SignalQueue() {
                   </ul>
                   <button
                     onClick={() => approveSignal(signal.id)}
-                    className="flex items-center gap-1 px-3 py-1 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700"
+                    className="flex items-center gap-1 px-3 py-1 text-xs font-medium text-white bg-primary rounded hover:bg-primary-strong"
                   >
                     <Check size={13} />
                     Approve and send

@@ -64,7 +64,7 @@ export default function RelevanceBar({ deliveryId, onDismiss }: Props) {
           {!showComment && (
             <button
               onClick={() => setShowComment(true)}
-              className="text-xs text-slate-400 hover:text-blue-600"
+              className="text-xs text-slate-400 hover:text-primary"
             >
               Add a comment
             </button>
@@ -76,7 +76,7 @@ export default function RelevanceBar({ deliveryId, onDismiss }: Props) {
               onChange={(e) => setComment(e.target.value)}
               onBlur={() => setRelevance(deliveryId, rating, comment || undefined)}
               placeholder="Optional: tell the team why"
-              className="flex-1 border border-slate-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 border border-slate-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
           )}
           <span className="text-xs text-slate-400">Thanks, this trains the routing.</span>

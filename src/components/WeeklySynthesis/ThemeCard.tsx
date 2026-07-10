@@ -11,7 +11,7 @@ export default function ThemeCard({ theme }: ThemeCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm p-5 sm:p-6">
       <div className="flex items-center gap-2 mb-3">
-        <span className="w-2 h-2 rounded-full bg-blue-600" />
+        <span className="w-2 h-2 rounded-full bg-primary" />
         <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
           Theme
         </span>
@@ -31,7 +31,7 @@ export default function ThemeCard({ theme }: ThemeCardProps) {
           {theme.relatedDays.join(', ')}
         </div>
         <div className="hidden sm:block text-slate-300">•</div>
-        <div className="text-blue-600 font-medium">
+        <div className="text-primary font-medium">
           Suggested focus: {theme.suggestedFocus}
         </div>
       </div>

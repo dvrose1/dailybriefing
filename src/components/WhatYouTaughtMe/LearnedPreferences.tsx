@@ -15,7 +15,7 @@ export default function LearnedPreferences({ preferences }: LearnedPreferencesPr
       <ul className="space-y-2">
         {preferences.map((pref, idx) => (
           <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
-            <span className="text-blue-600 mt-0.5">•</span>
+            <span className="text-primary mt-0.5">•</span>
             <span>{pref}</span>
           </li>
         ))}

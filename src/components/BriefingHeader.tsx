@@ -42,7 +42,7 @@ export default function BriefingHeader({
             </h1>
             <button
               onClick={onLearningClick}
-              className="text-xs text-slate-400 hover:text-blue-600 transition-colors hidden sm:block"
+              className="text-xs text-slate-400 hover:text-primary transition-colors hidden sm:block"
             >
               What you've taught me
             </button>
@@ -53,7 +53,7 @@ export default function BriefingHeader({
           </p>
           <button
             onClick={onLearningClick}
-            className="text-xs text-slate-400 hover:text-blue-600 transition-colors sm:hidden mt-1"
+            className="text-xs text-slate-400 hover:text-primary transition-colors sm:hidden mt-1"
           >
             What you've taught me
           </button>
@@ -62,7 +62,7 @@ export default function BriefingHeader({
           <ViewToggle activeView={activeView} onToggle={onViewToggle} />
           <button
             onClick={onVoiceClick}
-            className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-primary bg-accent-soft rounded-lg hover:bg-primary/10 transition-colors"
           >
             <Volume2 size={18} />
             <span className="hidden sm:inline">Listen to Briefing</span>

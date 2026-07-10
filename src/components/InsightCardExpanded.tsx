@@ -39,7 +39,7 @@ export default function InsightCardExpanded({
         <div className="bg-slate-50 rounded-lg p-4">
           <Chart
             data={insight.chartData}
-            color={insight.priority === 'urgent' ? '#dc2626' : '#2563eb'}
+            color={insight.priority === 'urgent' ? '#dc2626' : '#6f00e2'}
           />
         </div>
       )}
@@ -72,15 +72,15 @@ export default function InsightCardExpanded({
       </button>
 
       {showWhySeeing && (
-        <div className="bg-blue-50 border border-blue-100 rounded-lg p-3">
-          <p className="text-sm text-blue-800">{insight.whySeeing}</p>
+        <div className="bg-accent-soft border border-primary/10 rounded-lg p-3">
+          <p className="text-sm text-primary-strong">{insight.whySeeing}</p>
         </div>
       )}
 
       <div className="pt-2">
         <button
           onClick={onActionClick}
-          className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+          className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-strong transition-colors"
         >
           {insight.recommendedAction.label}
         </button>

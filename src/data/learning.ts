@@ -5,10 +5,10 @@ import { LearningData } from '@/types';
 
 export const learningData: LearningData = {
   topicEngagement: [
-    { topic: "Competitive Intelligence", percentage: 78, color: "#2563eb" },
-    { topic: "Performance Alerts", percentage: 65, color: "#2563eb" },
-    { topic: "Social & Sentiment", percentage: 42, color: "#2563eb" },
-    { topic: "Calendar & Prep", percentage: 31, color: "#2563eb" },
+    { topic: "Competitive Intelligence", percentage: 78, color: "#6f00e2" },
+    { topic: "Performance Alerts", percentage: 65, color: "#6f00e2" },
+    { topic: "Social & Sentiment", percentage: 42, color: "#6f00e2" },
+    { topic: "Calendar & Prep", percentage: 31, color: "#6f00e2" },
     { topic: "Industry News", percentage: 15, color: "#94a3b8" },
   ],
   patterns: {

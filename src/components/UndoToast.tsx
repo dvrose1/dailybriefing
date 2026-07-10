@@ -29,7 +29,7 @@ export default function UndoToast({
       <span className="text-sm">{message}</span>
       <button
         onClick={onUndo}
-        className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+        className="text-sm font-medium text-violet-300 hover:text-violet-200 transition-colors"
       >
         Undo
       </button>

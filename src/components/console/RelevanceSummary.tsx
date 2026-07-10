@@ -42,7 +42,7 @@ export default function RelevanceSummary() {
               <span className="w-44 shrink-0 text-slate-600">{r.source}</span>
               <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-blue-600 rounded-full transition-all"
+                  className="h-full bg-primary rounded-full transition-all"
                   style={{ width: `${pct ?? 0}%` }}
                 />
               </div>

@@ -28,11 +28,11 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
   const getIcon = () => {
     switch (action.type) {
       case 'schedule_meeting':
-        return <Calendar className="text-blue-600" size={24} />;
+        return <Calendar className="text-primary" size={24} />;
       case 'draft_email':
-        return <Mail className="text-blue-600" size={24} />;
+        return <Mail className="text-primary" size={24} />;
       case 'add_to_deck':
-        return <FileText className="text-blue-600" size={24} />;
+        return <FileText className="text-primary" size={24} />;
       default:
         return null;
     }
@@ -100,7 +100,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
                   <input
                     type="text"
                     defaultValue={action.prefill.subject}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none"
                   />
                 </div>
               )}
@@ -113,7 +113,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
                   <textarea
                     defaultValue={action.prefill.agenda}
                     rows={4}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none resize-none"
                   />
                 </div>
               )}
@@ -129,7 +129,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
                         key={time}
                         className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${
                           selectedTime === time
-                            ? 'border-blue-500 bg-blue-50'
+                            ? 'border-primary bg-accent-soft'
                             : 'border-slate-200 hover:border-slate-300'
                         }`}
                       >
@@ -139,7 +139,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
                           value={time}
                           checked={selectedTime === time}
                           onChange={(e) => setSelectedTime(e.target.value)}
-                          className="text-blue-600"
+                          className="text-primary"
                         />
                         <span className="text-sm text-slate-700">{time}</span>
                       </label>
@@ -160,7 +160,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
                   <input
                     type="text"
                     defaultValue={action.prefill.to}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none"
                   />
                 </div>
               )}
@@ -173,7 +173,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
                   <input
                     type="text"
                     defaultValue={action.prefill.emailSubject}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none"
                   />
                 </div>
               )}
@@ -186,7 +186,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
                   <textarea
                     defaultValue={action.prefill.body}
                     rows={10}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none font-mono"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none resize-none font-mono"
                   />
                 </div>
               )}
@@ -212,7 +212,7 @@ export default function ActionModal({ action, onClose, onSubmit }: ActionModalPr
           </button>
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+            className="px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-strong rounded-lg transition-colors"
           >
             {action.type === 'schedule_meeting' && 'Schedule'}
             {action.type === 'draft_email' && 'Send Draft'}

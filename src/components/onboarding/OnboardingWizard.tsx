@@ -68,13 +68,13 @@ export default function OnboardingWizard({ profile }: Props) {
             <p className="text-xs font-medium text-slate-500">
               Step {step + 1} of {total} · under 3 minutes
             </p>
-            <button onClick={skip} className="text-xs text-slate-400 hover:text-blue-600">
+            <button onClick={skip} className="text-xs text-slate-400 hover:text-primary">
               Skip for now
             </button>
           </div>
           <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
             <div
-              className="h-full bg-blue-600 rounded-full transition-all"
+              className="h-full bg-primary rounded-full transition-all"
               style={{ width: `${((step + 1) / total) * 100}%` }}
             />
           </div>
@@ -105,7 +105,7 @@ export default function OnboardingWizard({ profile }: Props) {
                   value={draft.roleTitle}
                   onChange={(e) => set({ roleTitle: e.target.value })}
                   placeholder="e.g. Senior Media Analyst"
-                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
               </div>
               <div>
@@ -196,7 +196,7 @@ export default function OnboardingWizard({ profile }: Props) {
                   value={draft.problemNotes}
                   onChange={(e) => set({ problemNotes: e.target.value })}
                   rows={3}
-                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
               </div>
             </div>
@@ -249,14 +249,14 @@ export default function OnboardingWizard({ profile }: Props) {
           {step < total - 1 ? (
             <button
               onClick={() => persistAnd(step + 1)}
-              className="px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+              className="px-5 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary-strong"
             >
               Continue
             </button>
           ) : (
             <button
               onClick={finish}
-              className="flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+              className="flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary-strong"
             >
               <Check size={16} />
               Finish setup
@@ -286,8 +286,8 @@ function Chip({
       onClick={onClick}
       className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
         selected
-          ? 'bg-blue-600 text-white border-blue-600'
-          : 'bg-white text-slate-600 border-slate-200 hover:border-blue-400'
+          ? 'bg-primary text-white border-primary'
+          : 'bg-white text-slate-600 border-slate-200 hover:border-primary/50'
       }`}
     >
       {label}
@@ -309,12 +309,12 @@ function SelectCard({
       onClick={onClick}
       className={`flex items-center justify-between px-4 py-3 rounded-lg border text-left text-sm transition-colors ${
         selected
-          ? 'bg-blue-50 border-blue-500 text-blue-800 font-medium'
-          : 'bg-white border-slate-200 text-slate-700 hover:border-blue-400'
+          ? 'bg-accent-soft border-primary text-primary-strong font-medium'
+          : 'bg-white border-slate-200 text-slate-700 hover:border-primary/50'
       }`}
     >
       {label}
-      {selected && <Check size={16} className="text-blue-600" />}
+      {selected && <Check size={16} className="text-primary" />}
     </button>
   );
 }

@@ -131,7 +131,7 @@ export default function SignalForm({ initial, submitLabel, onSubmit, onCancel }:
         <button
           onClick={() => valid && onSubmit(draft)}
           disabled={!valid}
-          className="px-4 py-1.5 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700 disabled:opacity-40"
+          className="px-4 py-1.5 text-sm font-medium text-white bg-primary rounded hover:bg-primary-strong disabled:opacity-40"
         >
           {submitLabel}
         </button>
@@ -182,8 +182,8 @@ function TagRow({
             onClick={() => onToggle(o)}
             className={`px-2 py-0.5 rounded text-xs border transition-colors ${
               active
-                ? 'bg-blue-600 text-white border-blue-600'
-                : 'bg-white text-slate-600 border-slate-200 hover:border-blue-400'
+                ? 'bg-primary text-white border-primary'
+                : 'bg-white text-slate-600 border-slate-200 hover:border-primary/50'
             }`}
           >
             {labels?.[o] ?? o}

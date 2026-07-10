@@ -43,7 +43,7 @@ export default function ConsolePage() {
         action={
           <button
             onClick={() => setComposing((c) => !c)}
-            className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700"
+            className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-white bg-primary rounded hover:bg-primary-strong"
           >
             <Plus size={14} />
             Compose
@@ -51,7 +51,7 @@ export default function ConsolePage() {
         }
       >
         {composing && (
-          <div className="bg-white border border-blue-300 rounded-lg p-4 mb-3">
+          <div className="bg-white border border-primary/40 rounded-lg p-4 mb-3">
             <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3">
               New manual notification
             </p>

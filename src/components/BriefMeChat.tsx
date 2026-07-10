@@ -98,7 +98,7 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
       <div className="bg-white rounded-xl shadow-xl w-full max-w-lg mx-4 h-[600px] max-h-[80vh] flex flex-col animate-scale-in">
         <div className="flex items-center justify-between p-4 border-b border-slate-200">
           <div className="flex items-center gap-2">
-            <MessageSquare className="text-blue-600" size={20} />
+            <MessageSquare className="text-primary" size={20} />
             <h2 className="text-lg font-semibold text-slate-800">Brief Me</h2>
           </div>
           <button
@@ -138,7 +138,7 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
               <div
                 className={`max-w-[80%] px-4 py-2 rounded-2xl ${
                   message.role === 'user'
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-primary text-white'
                     : 'bg-slate-100 text-slate-800'
                 }`}
               >
@@ -188,12 +188,12 @@ export default function BriefMeChat({ isOpen, onClose }: BriefMeChatProps) {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask me anything..."
               disabled={isLoading}
-              className="flex-1 px-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none disabled:bg-slate-50"
+              className="flex-1 px-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none disabled:bg-slate-50"
             />
             <button
               type="submit"
               disabled={!input.trim() || isLoading}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-strong transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send size={18} />
             </button>

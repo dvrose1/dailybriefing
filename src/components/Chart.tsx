@@ -18,7 +18,7 @@ interface ChartProps {
   color?: string;
 }
 
-export default function Chart({ data, color = '#2563eb' }: ChartProps) {
+export default function Chart({ data, color = '#6f00e2' }: ChartProps) {
   return (
     <div className="h-48 w-full">
       <ResponsiveContainer width="100%" height="100%">

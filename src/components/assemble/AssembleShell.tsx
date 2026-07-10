@@ -17,7 +17,7 @@ export default function AssembleShell({ children }: { children: React.ReactNode 
   const pathname = usePathname();
 
   return (
-    <div className="h-screen w-screen flex flex-col md:flex-row bg-[#f5f6f8] overflow-hidden">
+    <div className="h-screen w-screen flex flex-col md:flex-row bg-background overflow-hidden">
       <div className="hidden md:block h-full">
         <AssembleSidebar />
       </div>
@@ -25,7 +25,7 @@ export default function AssembleShell({ children }: { children: React.ReactNode 
       {/* Mobile bar */}
       <div className="md:hidden bg-white border-b border-[#e5e7eb] px-3 py-2 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 min-w-0">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-violet-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
             A
           </div>
           <nav className="flex items-center gap-0.5">
@@ -35,7 +35,7 @@ export default function AssembleShell({ children }: { children: React.ReactNode 
                 href={link.href}
                 className={`px-2 py-1 rounded text-[13px] ${
                   pathname === link.href
-                    ? 'bg-blue-50 text-blue-600 font-medium'
+                    ? 'bg-accent-soft text-primary font-medium'
                     : 'text-gray-600'
                 }`}
               >

@@ -15,7 +15,7 @@ export default function ViewToggle({ activeView, onToggle }: ViewToggleProps) {
         onClick={() => onToggle('daily')}
         className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
           activeView === 'daily'
-            ? 'bg-blue-600 text-white'
+            ? 'bg-primary text-white'
             : 'text-slate-600 hover:text-slate-800'
         }`}
       >
@@ -25,7 +25,7 @@ export default function ViewToggle({ activeView, onToggle }: ViewToggleProps) {
         onClick={() => onToggle('weekly')}
         className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
           activeView === 'weekly'
-            ? 'bg-blue-600 text-white'
+            ? 'bg-primary text-white'
             : 'text-slate-600 hover:text-slate-800'
         }`}
       >

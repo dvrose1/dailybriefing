@@ -145,7 +145,7 @@ export default function VoicePlayer({ isOpen, onClose }: VoicePlayerProps) {
           ) : isLoading ? (
             <div className="flex-1 flex items-center justify-center">
               <div className="flex items-center gap-2 text-slate-500">
-                <div className="w-4 h-4 border-2 border-slate-300 border-t-blue-600 rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-slate-300 border-t-primary rounded-full animate-spin" />
                 <span className="text-sm">Loading audio...</span>
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function VoicePlayer({ isOpen, onClose }: VoicePlayerProps) {
             <>
               <button
                 onClick={togglePlayPause}
-                className="w-10 h-10 flex items-center justify-center bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+                className="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full hover:bg-primary-strong transition-colors"
               >
                 {isPlaying ? <Pause size={20} /> : <Play size={20} className="ml-0.5" />}
               </button>
@@ -168,7 +168,7 @@ export default function VoicePlayer({ isOpen, onClose }: VoicePlayerProps) {
                   onClick={handleProgressClick}
                 >
                   <div
-                    className="h-full bg-blue-600 rounded-full transition-all"
+                    className="h-full bg-primary rounded-full transition-all"
                     style={{ width: `${progress}%` }}
                   />
                 </div>

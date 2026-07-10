@@ -50,7 +50,7 @@ export default function AssembleSidebar() {
   return (
     <aside className="w-[260px] bg-white border-r border-[#e5e7eb] flex flex-col py-5 h-full">
       <div className="flex items-center gap-3 px-5 mb-6">
-        <div className="w-10 h-10 rounded-[10px] bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white font-bold">
+        <div className="w-10 h-10 rounded-[10px] bg-gradient-to-br from-primary to-violet-600 flex items-center justify-center text-white font-bold">
           A
         </div>
         <div>
@@ -68,7 +68,7 @@ export default function AssembleSidebar() {
                 key={href}
                 href={href}
                 className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
-                  active ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-100'
+                  active ? 'bg-accent-soft text-primary' : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 <Icon size={16} />
@@ -115,7 +115,7 @@ export function PersonaSwitcher({ compact = false }: { compact?: boolean }) {
       {!compact && <p className="text-[11px] text-gray-400 mb-1.5">Viewing as (demo)</p>}
       <div className="flex items-center gap-2">
         {!compact && (
-          <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-semibold shrink-0">
+          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-xs font-semibold shrink-0">
             {activePersona.initials}
           </div>
         )}
@@ -123,7 +123,7 @@ export function PersonaSwitcher({ compact = false }: { compact?: boolean }) {
           <select
             value={activePersonaId}
             onChange={(e) => setActivePersona(e.target.value)}
-            className="w-full appearance-none bg-[#f5f6f8] border border-[#e5e7eb] rounded-lg pl-2.5 pr-7 py-1.5 text-[13px] text-gray-700 cursor-pointer hover:bg-gray-100"
+            className="w-full appearance-none bg-background border border-[#e5e7eb] rounded-lg pl-2.5 pr-7 py-1.5 text-[13px] text-gray-700 cursor-pointer hover:bg-gray-100"
             title="Switch demo persona"
           >
             {personas.map((p) => (
