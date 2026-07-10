@@ -1,10 +1,10 @@
-// ABOUTME: Root layout with Microsoft Teams visual wrapper.
-// ABOUTME: Sets up the app shell to look like a Teams personal app.
+// ABOUTME: Root layout with the Assemble visual shell.
+// ABOUTME: Sets up the app to look like a surface inside Unilever's Assemble workspace.
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import TeamsWrapper from "@/components/teams/TeamsWrapper";
+import AssembleShell from "@/components/assemble/AssembleShell";
 import { StoreProvider } from "@/lib/store";
 
 const inter = Inter({
@@ -26,9 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <StoreProvider>
-          <TeamsWrapper>
+          <AssembleShell>
             {children}
-          </TeamsWrapper>
+          </AssembleShell>
         </StoreProvider>
       </body>
     </html>
