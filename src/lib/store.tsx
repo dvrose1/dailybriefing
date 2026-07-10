@@ -23,7 +23,7 @@ import { SEED_SIGNALS } from '@/data/signals';
 import { resolveAudience } from '@/lib/routing';
 
 // Bump to reseed localStorage after changing seed data shape.
-const STORAGE_KEY = 'cos-demo-store-v1';
+const STORAGE_KEY = 'cos-demo-store-v2';
 
 // Fatigue control: realtime sends per persona per demo session beyond this
 // roll into the daily digest instead of appearing immediately.

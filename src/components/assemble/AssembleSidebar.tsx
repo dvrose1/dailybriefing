@@ -38,9 +38,9 @@ const INTELLIGENCE_ITEMS = [
 ];
 
 const RECENTS = [
-  'Daily insights for Radiant skincare',
+  'Daily insights for Dove skincare',
   'Harvest Table club channel review',
-  'Everfresh display pacing question',
+  'Degree display pacing question',
   'Q3 promo calendar working doc',
 ];
 

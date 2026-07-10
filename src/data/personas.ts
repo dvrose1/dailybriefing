@@ -21,10 +21,10 @@ export const ARCHETYPES: Archetype[] = [
 
 export const BUSINESS_UNITS: BusinessUnit[] = ['B&W', 'Personal Care', 'Foods'];
 
-// Fictional Unilever-style brand set, grouped by business unit.
+// Unilever brand set, grouped by business unit. Foods stays fictional.
 export const BRANDS_BY_BU: Record<BusinessUnit, string[]> = {
-  'B&W': ['Radiant', 'Lume', 'Botanica'],
-  'Personal Care': ['Everfresh', 'PureWash', 'Brightsmile'],
+  'B&W': ['Dove', 'Tresemme', 'Shea', 'Nexxus', 'Vaseline'],
+  'Personal Care': ['Dove Men+Care', 'Degree', 'Axe', 'Dove SCL'],
   Foods: ['Harvest Table', 'Golden Spoon', 'Nested Broth'],
 };
 
@@ -74,7 +74,7 @@ export const SEED_PERSONAS: Profile[] = [
     archetype: 'Senior Sponsor',
     roleTitle: 'VP Personal Care Marketing',
     businessUnit: 'Personal Care',
-    brands: ['Everfresh'],
+    brands: ['Degree'],
     markets: ['US Northeast'],
     scopes: ['CMI'],
     problems: ['Competitive moves reach me too late'],
